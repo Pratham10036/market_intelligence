@@ -23,7 +23,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Single light theme only — no dark mode.
 
-- **`src/index.css`** — Single source of truth for all colors. Defines CSS variables inside `@theme` block (`--color-primary`, `--color-heading`, `--color-navy`, etc.). Values match `docs/design-system.md`. Also contains glassmorphism (`.glass-card`), scroll animation (`.fade-up`), and header nav menu overrides.
+- **`src/index.css`** — Single source of truth for all colors. Defines CSS variables inside `@theme` block (`--color-primary`, `--color-heading`, `--color-navy`, etc.). Values match `docs/design-system.md`. Also contains glassmorphism (`.glass-card`), scroll animation (`.fade-up`), desktop nav underline (`.header-nav-item`), and drawer nav overrides (`.drawer-nav`).
 - **`src/theme.ts`** — Exports `lightTheme` (Ant Design `ThemeConfig`). Reads all colors from CSS variables via `getCssVariable()` — zero hardcoded HEX values.
 - **`src/theme/context.ts`** — `ThemeContext` + `useTheme()` hook. Light-only, throws if used outside provider.
 - **`src/theme/ThemeProvider.tsx`** — Wraps children in Ant Design `ConfigProvider` + `ThemeContext.Provider`.
@@ -39,22 +39,36 @@ To use colors in components: use Tailwind classes (`text-heading`, `bg-primary`,
 - **`src/main.tsx`** — `<BrowserRouter>` wraps `<ThemeProvider>` → `<App>`
 - **`src/App.tsx`** — `<Routes>` with `<Route element={<Layout />}>` as wrapper route; pages lazy-loaded via `React.lazy` + `<Suspense>`
 - **`src/components/layout/Layout.tsx`** — Uses `<Outlet />` from react-router to render child routes
-- **`src/components/layout/Header.tsx`** — Uses `useNavigate()` + `useLocation()` for navigation, Ant Design `Menu` for nav items
+- **`src/components/layout/Header.tsx`** — Uses `useNavigate()` + `useLocation()` for navigation
 - Internal links: use `useNavigate()` or `<Link>` from `"react-router"` — never raw `<a>` for internal routes
 - External links (mailto, external URLs): use standard `<a>` tags
 
+### Active Routes
+
+| Path | Page | Status |
+|------|------|--------|
+| `/` | HomePage | Done |
+| `/about` | AboutPage | Done |
+| `/solutions` | SolutionsPage | Done |
+| `/market-intelligence` | MarketIntelligencePage | Done |
+| `/business-impact` | BusinessImpactPage | Done |
+| `/dashboard` | DashboardPage | Not yet built |
+| `/contact` | ContactPage | Not yet built |
+
 ## Layout Architecture
 
-- **`src/components/layout/Layout.tsx`** — Root layout using Ant Design `<Layout>` + `<Layout.Content>` + `<Outlet />`
-- **`src/components/layout/Header.tsx`** — Enterprise nav bar: logo (left) | centered Ant Design Menu | "Request Demo" Button (right). Uses `.header-nav` CSS class for menu styling overrides.
+- **`src/components/layout/Layout.tsx`** — Root layout using Ant Design `<Layout>` + `<Layout.Content>` + `<Outlet />` + `<Footer />`
+- **`src/components/layout/Header.tsx`** — Sticky enterprise nav bar: logo (left) | plain `<nav>` + `<ul>` centered links with `.header-nav-item` CSS underline animation (desktop `lg+`) | "Request Demo" Button (right). Mobile/tablet (`<lg`): hamburger icon opens Ant Design `<Drawer>` with vertical `<Menu>` + full-width CTA. Desktop nav does NOT use Ant Design Menu (avoids `rc-overflow` auto-collapse issues).
+- **`src/components/layout/Footer.tsx`** — 3-column responsive footer: Brand + tagline | Navigation links | Contact email. Ant Design `<Divider>`. `bg-background-alt`.
 - Header overrides Ant Design defaults via `style` prop (background, height, padding) since Tailwind can't beat Ant's specificity
-- Pages render inside `<Outlet />` — never duplicate Header inside page components
+- Pages render inside `<Outlet />` — never duplicate Header or Footer inside page components
 
 ## UI Enhancements
 
-- **Glassmorphism** (`.glass-card` in index.css): Semi-transparent `rgba(255,255,255,0.6)` + `backdrop-blur(12px)`, `var(--color-card-border)` border, hover lift (`translateY(-4px)`) + soft shadow. Used on Hero image frame, Module cards, ROI stat cards.
-- **Scroll fade-in** (`.fade-up` in index.css): `opacity: 0` + `translateY(24px)` → animates to visible on scroll. Triggered by `useFadeIn()` hook via IntersectionObserver.
-- **`src/hooks/useFadeIn.ts`** — Lightweight hook using native IntersectionObserver (15% threshold, fires once). Returns a ref to attach to any element.
+- **Glassmorphism** (`.glass-card` in index.css): Semi-transparent `rgba(255,255,255,0.6)` + `backdrop-blur(12px)`, `var(--color-card-border)` border, hover lift (`translateY(-4px)`) + soft shadow. Used on Hero image frame, Module cards, ROI stat cards, feature cards.
+- **Scroll fade-in** (`.fade-up` in index.css): `opacity: 0` + `translateY(24px)` → animates to visible on scroll. Toggles both directions (scroll up re-triggers).
+- **`src/hooks/useFadeIn.ts`** — Lightweight hook using native IntersectionObserver (5% threshold, -40px rootMargin, bidirectional). Returns a ref to attach to any element.
+- **CTASection** accepts optional `heading`, `subtext`, and `buttonLabel` props for page-specific content.
 
 ## TypeScript Configuration
 
@@ -74,15 +88,24 @@ The goal is a clean, modern, B2B industrial website with strong ROI-focused mess
 ```
 src/
 ├── components/
-│   ├── layout/          # Layout.tsx, Header.tsx
-│   └── sections/        # HomeHeroSection, ProblemSolutionSection, ModulesSection, ROICounterSection, CTASection
-├── pages/               # HomePage.tsx (lazy-loaded)
+│   ├── layout/          # Layout.tsx, Header.tsx, Footer.tsx
+│   └── sections/        # All section components (see below)
+├── pages/               # All page components (lazy-loaded)
 ├── hooks/               # useFadeIn.ts
 ├── theme/               # context.ts, ThemeProvider.tsx
 ├── assets/
 ├── constants/
 └── utils/
 ```
+
+### Section Components
+
+**Home**: HomeHeroSection, ProblemSolutionSection, ModulesSection, ROICounterSection
+**About**: MissionSection, VisionSection, ImplementationModelSection
+**Solutions**: SolutionsOverviewSection
+**Market Intelligence**: MarketIntelHeroSection, MarketIntelProblemSection, MarketIntelFeaturesSection, MarketIntelDashboardSection, MarketIntelOutcomeSection
+**Business Impact**: BusinessImpactHeroSection, BusinessImpactStatsSection, BusinessImpactValueSection
+**Shared**: CTASection (accepts props for page-specific content)
 
 ## Tech Stack Rules
 
@@ -111,48 +134,47 @@ src/
 
 ### HOME PAGE
 
-Sections in order:
-
 1. HomeHeroSection
 2. ProblemSolutionSection
 3. ModulesSection
 4. (DashboardPreviewSection — not yet built)
 5. ROICounterSection
-6. CTASection
+6. CTASection (default content)
 
 ### ABOUT PAGE
 
-1. Mission statement
-2. Vision with industrial imagery
-3. 3-step implementation model
+1. MissionSection
+2. VisionSection (has image placeholder)
+3. ImplementationModelSection (3 cards: Consulting, Implementation, Maintenance)
 
-### SOLUTION (Parent Page)
+### SOLUTIONS PAGE
 
-1. Overview of modules
-2. CTA linking to module detail pages
+1. SolutionsOverviewSection (5 module cards with "Learn More" links)
+2. CTASection ("Find the Right Module for You")
 
 ### MARKET INTELLIGENCE PAGE
 
-1. Hero with unique gradient image
-2. Problem context
-3. Feature block with icons
-4. Visual dashboard screenshot
-5. Outcome section
-6. CTA
+1. MarketIntelHeroSection
+2. MarketIntelProblemSection (3 problem cards)
+3. MarketIntelFeaturesSection (3 feature cards)
+4. MarketIntelDashboardSection (screenshot placeholder)
+5. MarketIntelOutcomeSection (3 stats)
+6. CTASection ("Stay Ahead of the Market")
 
-### DASHBOARD PAGE
+### BUSINESS IMPACT PAGE
+
+1. BusinessImpactHeroSection
+2. BusinessImpactStatsSection (6 stats, 2-col mobile / 3-col desktop)
+3. BusinessImpactValueSection (3 value cards)
+4. CTASection ("Ready to See the Impact?")
+
+### DASHBOARD PAGE (not yet built)
 
 1. Screenshot
 2. Headline + description
 3. Hover or zoom effect on image
 
-### BUSINESS IMPACT PAGE
-
-1. Animated statistical counters
-2. Customer value-focused copy
-3. Secondary CTA
-
-### CONTACT PAGE
+### CONTACT PAGE (not yet built)
 
 1. Contact form
 2. Address + optional map
@@ -161,8 +183,8 @@ Sections in order:
 ## Design System Rules
 
 - Industrial, premium, minimal design
-- Use generous spacing (py-20, py-24 sections)
-- Container width: max-w-7xl mx-auto px-6
+- Use generous spacing (py-14 mobile, py-20 tablet, py-24 desktop)
+- Container width: max-w-7xl mx-auto px-4 sm:px-6
 - Typography scale should be consistent
 - Primary color: Cyan-based CTA
 - Backgrounds: White (#FFFFFF) or light gray (#F5F7FA)
@@ -173,7 +195,7 @@ Sections in order:
 ## Tailwind Usage Rules
 
 - Always use responsive classes
-- Mobile-first approach
+- Mobile-first approach (base → sm → md → lg)
 - Use grid for layout when possible
 - Use flex for alignment
 - Avoid hardcoded pixel values unless necessary
@@ -181,11 +203,11 @@ Sections in order:
 
 ## Component Naming Rules
 
-Section files: `HomeHeroSection.tsx`, `ProblemSolutionSection.tsx`, `ModulesSection.tsx`, `DashboardPreviewSection.tsx`, `ROICounterSection.tsx`, `CTASection.tsx`
+Section files: `[PageName][SectionPurpose]Section.tsx` (e.g., `MarketIntelHeroSection.tsx`, `BusinessImpactStatsSection.tsx`)
 
-Page files: `HomePage.tsx`, `AboutPage.tsx`, `MarketIntelligencePage.tsx`, `DashboardPage.tsx`, `BusinessImpactPage.tsx`, `ContactPage.tsx`
+Page files: `[PageName]Page.tsx` (e.g., `HomePage.tsx`, `AboutPage.tsx`)
 
-Layout files: `Layout.tsx`, `Header.tsx`
+Layout files: `Layout.tsx`, `Header.tsx`, `Footer.tsx`
 
 ## What Claude SHOULD Do
 
@@ -209,6 +231,7 @@ Layout files: `Layout.tsx`, `Header.tsx`
 - Do NOT use inline CSS styles or hardcoded HEX values
 - Do NOT use `react-router-dom` — use `react-router`
 - Do NOT use raw `<a>` for internal navigation
+- Do NOT use Ant Design `<Menu mode="horizontal">` for desktop nav (rc-overflow auto-collapse issue)
 
 ## Documentation Location
 
