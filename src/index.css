@@ -22,3 +22,71 @@
     border-color: var(--color-card-border);
   }
 }
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-card-border);
+  border-radius: 12px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Scroll fade-in animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop header nav items */
+.header-nav-item {
+  position: relative;
+}
+
+.header-nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.25s ease, left 0.25s ease;
+}
+
+.header-nav-item:hover::after,
+.header-nav-item.font-semibold::after {
+  left: 12px;
+  width: calc(100% - 24px);
+}
+
+/* Drawer nav menu overrides */
+.drawer-nav .ant-menu-item {
+  color: var(--color-text-secondary);
+  border-radius: 6px;
+  margin: 4px 12px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.drawer-nav .ant-menu-item:hover {
+  color: var(--color-primary) !important;
+  background-color: var(--color-background-alt) !important;
+}
+
+.drawer-nav .ant-menu-item-selected {
+  color: var(--color-primary) !important;
+  background-color: var(--color-background-alt) !important;
+  font-weight: 600;
+}
