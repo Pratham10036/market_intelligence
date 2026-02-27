@@ -52,8 +52,8 @@ To use colors in components: use Tailwind classes (`text-heading`, `bg-primary`,
 | `/solutions` | SolutionsPage | Done |
 | `/market-intelligence` | MarketIntelligencePage | Done |
 | `/business-impact` | BusinessImpactPage | Done |
-| `/dashboard` | DashboardPage | Not yet built |
-| `/contact` | ContactPage | Not yet built |
+| `/dashboard` | DashboardPage | Done |
+| `/contact` | ContactPage | Done |
 
 ## Layout Architecture
 
@@ -105,6 +105,7 @@ src/
 **Solutions**: SolutionsOverviewSection
 **Market Intelligence**: MarketIntelHeroSection, MarketIntelProblemSection, MarketIntelFeaturesSection, MarketIntelDashboardSection, MarketIntelOutcomeSection
 **Business Impact**: BusinessImpactHeroSection, BusinessImpactStatsSection, BusinessImpactValueSection
+**Contact**: ContactHeroSection, ContactFormSection, ContactMapSection
 **Shared**: CTASection (accepts props for page-specific content)
 
 ## Tech Stack Rules
@@ -137,9 +138,8 @@ src/
 1. HomeHeroSection
 2. ProblemSolutionSection
 3. ModulesSection
-4. (DashboardPreviewSection — not yet built)
-5. ROICounterSection
-6. CTASection (default content)
+4. ROICounterSection
+5. CTASection (default content)
 
 ### ABOUT PAGE
 
@@ -168,17 +168,19 @@ src/
 3. BusinessImpactValueSection (3 value cards)
 4. CTASection ("Ready to See the Impact?")
 
-### DASHBOARD PAGE (not yet built)
+### DASHBOARD PAGE
 
-1. Screenshot
-2. Headline + description
-3. Hover or zoom effect on image
+DashboardPage is a single-component page (no section components) with:
+1. Large headline (`font-extrabold`, up to `text-6xl`) + description
+2. Two dashboard screenshots in responsive grid (stacked mobile, side-by-side `md+`)
+3. Hover effect: `scale-[1.03]` + `shadow-sm` → `shadow-lg` transition
+4. Images: `image_dashboard-1.jpg`, `Image-dashboard-2.jpg` from `/public`
 
-### CONTACT PAGE (not yet built)
+### CONTACT PAGE
 
-1. Contact form
-2. Address + optional map
-3. Footer with links
+1. ContactHeroSection
+2. ContactFormSection (Ant Design Form + contact details, two-column on lg+)
+3. ContactMapSection (Google Maps embed via iframe)
 
 ## Design System Rules
 
