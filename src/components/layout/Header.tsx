@@ -27,7 +27,9 @@ const Header: React.FC = () => {
   return (
     <Layout.Header
       style={{
-        background: "var(--color-background)",
+        background: "rgba(15, 23, 42, 0.8)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
         borderBottom: "1px solid var(--color-card-border)",
         lineHeight: "inherit",
         padding: 0,
@@ -60,7 +62,7 @@ const Header: React.FC = () => {
                   className={`header-nav-item cursor-pointer rounded-md px-3 py-1.5 text-sm whitespace-nowrap transition-colors duration-200 ${
                     isActive
                       ? "font-semibold text-primary"
-                      : "text-text-secondary hover:bg-background-alt hover:text-primary"
+                      : "text-text-secondary hover:text-primary hover:bg-card-bg"
                   }`}
                 >
                   {label}
@@ -101,9 +103,11 @@ const Header: React.FC = () => {
         closeIcon={<CloseOutlined />}
         styles={{
           header: {
+            background: "var(--color-background)",
             borderBottom: "1px solid var(--color-card-border)",
           },
           body: {
+            background: "var(--color-background)",
             padding: 0,
             display: "flex",
             flexDirection: "column",

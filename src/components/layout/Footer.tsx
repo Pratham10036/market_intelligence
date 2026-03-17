@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-background-alt">
+    <footer className="bg-navy">
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-8 sm:px-6 sm:pt-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand */}
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <Divider style={{ borderColor: "var(--color-card-border)" }} />
+        <Divider />
 
         <p className="text-center text-xs text-text-muted">
           &copy; {year} XChart. All rights reserved.

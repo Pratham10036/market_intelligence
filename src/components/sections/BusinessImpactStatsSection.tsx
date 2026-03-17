@@ -26,7 +26,7 @@ const BusinessImpactStatsSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 md:gap-8">
+          <div className="stagger-children grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 md:gap-8">
             {stats.map((s) => (
               <div key={s.label} className="glass-card p-5 text-center sm:p-8">
                 <Statistic

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 
 type ThemeContextType = {
-  themeName: "light";
+  themeName: "dark";
 };
 
 export const ThemeContext = createContext<ThemeContextType | null>(null);

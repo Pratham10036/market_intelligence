@@ -34,7 +34,7 @@ const MarketIntelProblemSection: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="stagger-children grid gap-6 sm:grid-cols-3">
             {problems.map((p) => (
               <div key={p.title} className="glass-card p-6 sm:p-8">
                 <h3 className="mb-3 text-lg font-semibold text-heading">

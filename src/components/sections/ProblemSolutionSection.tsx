@@ -21,9 +21,12 @@ const ProblemSolutionSection: React.FC = () => {
   return (
     <section className="bg-background-alt py-14 sm:py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div ref={ref} className="fade-up grid gap-6 sm:gap-8 md:grid-cols-2">
+        <div ref={ref} className="fade-up stagger-children grid gap-6 sm:gap-8 md:grid-cols-2">
           {/* The Challenge */}
-          <Card className="border-card-border">
+          <Card
+            className="glass-card"
+            styles={{ body: { background: "transparent" } }}
+          >
             <h3 className="mb-4 text-sm font-semibold tracking-widest uppercase text-text-muted sm:mb-6">
               The Challenge
             </h3>
@@ -43,7 +46,10 @@ const ProblemSolutionSection: React.FC = () => {
           </Card>
 
           {/* The XChart Solution */}
-          <Card className="border-card-border">
+          <Card
+            className="glass-card"
+            styles={{ body: { background: "transparent" } }}
+          >
             <h3 className="mb-4 text-sm font-semibold tracking-widest uppercase text-primary sm:mb-6">
               The XChart Solution
             </h3>

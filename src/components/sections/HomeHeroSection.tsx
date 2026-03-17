@@ -14,7 +14,7 @@ const HomeHeroSection: React.FC = () => {
           <div ref={textRef} className="fade-up flex flex-col gap-5 sm:gap-6">
             <h1 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl md:text-5xl lg:text-6xl">
               The Bridge to{" "}
-              <span className="text-primary">Industry 4.0</span>
+              <span className="text-gradient-accent">Industry 4.0</span>
             </h1>
             <p className="max-w-lg text-base leading-relaxed text-text-secondary sm:text-lg">
               Transforming Solar Manufacturing into Intelligent, Autonomous

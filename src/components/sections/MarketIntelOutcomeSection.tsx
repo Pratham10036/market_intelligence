@@ -23,7 +23,7 @@ const MarketIntelOutcomeSection: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="stagger-children grid gap-6 sm:grid-cols-3">
             {outcomes.map((o) => (
               <div key={o.label} className="glass-card p-6 text-center sm:p-8">
                 <Statistic

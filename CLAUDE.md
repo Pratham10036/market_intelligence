@@ -21,17 +21,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Theme System Architecture
 
-Single light theme only — no dark mode.
+Single dark glassmorphism theme — no light mode.
 
-- **`src/index.css`** — Single source of truth for all colors. Defines CSS variables inside `@theme` block (`--color-primary`, `--color-heading`, `--color-navy`, etc.). Values match `docs/design-system.md`. Also contains glassmorphism (`.glass-card`), scroll animation (`.fade-up`), desktop nav underline (`.header-nav-item`), and drawer nav overrides (`.drawer-nav`).
-- **`src/theme.ts`** — Exports `lightTheme` (Ant Design `ThemeConfig`). Reads all colors from CSS variables via `getCssVariable()` — zero hardcoded HEX values.
-- **`src/theme/context.ts`** — `ThemeContext` + `useTheme()` hook. Light-only, throws if used outside provider.
+- **`src/index.css`** — Single source of truth for all colors. Defines CSS variables inside `@theme` block (`--color-primary`, `--color-heading`, `--color-background`, `--color-card-bg`, `--color-card-border`, `--color-surface`, `--color-input-bg`, `--color-btn-gradient-from/to`, etc.). Values match `docs/design-system.md`. Also contains glassmorphism (`.glass-card` with `backdrop-blur` + translucent bg + translucent border), scroll animation (`.fade-up`), desktop nav underline (`.header-nav-item`), drawer nav overrides (`.drawer-nav`), and Ant Design dark-theme button/divider overrides.
+- **`src/theme.ts`** — Exports `darkTheme` (Ant Design `ThemeConfig` with `darkAlgorithm`). Reads colors from CSS variables via `getCssVariable()`.
+- **`src/theme/context.ts`** — `ThemeContext` + `useTheme()` hook. Dark-only, throws if used outside provider.
 - **`src/theme/ThemeProvider.tsx`** — Wraps children in Ant Design `ConfigProvider` + `ThemeContext.Provider`.
 - **`src/main.tsx`** — Imports `index.css` and `antd/dist/reset.css`, wraps `<App>` in `<BrowserRouter>` → `<ThemeProvider>`.
 
-Color flow: `index.css @theme` → CSS variables → `theme.ts getCssVariable()` → Ant Design ConfigProvider + Tailwind utilities.
+Color flow: `index.css @theme` → CSS variables → `theme.ts getCssVariable()` → Ant Design ConfigProvider (darkAlgorithm) + Tailwind utilities.
 
-To use colors in components: use Tailwind classes (`text-heading`, `bg-primary`, `bg-background-alt`) or Ant Design tokens (auto-applied via ConfigProvider).
+To use colors in components: use Tailwind classes (`text-heading`, `bg-primary`, `bg-background-alt`, `bg-surface`) or Ant Design tokens (auto-applied via ConfigProvider). Use `.glass-card` class for all card/panel surfaces.
 
 ## Routing Architecture
 
@@ -65,7 +65,7 @@ To use colors in components: use Tailwind classes (`text-heading`, `bg-primary`,
 
 ## UI Enhancements
 
-- **Glassmorphism** (`.glass-card` in index.css): Semi-transparent `rgba(255,255,255,0.6)` + `backdrop-blur(12px)`, `var(--color-card-border)` border, hover lift (`translateY(-4px)`) + soft shadow. Used on Hero image frame, Module cards, ROI stat cards, feature cards.
+- **Glassmorphism** (`.glass-card` in index.css): Semi-transparent `rgba(255,255,255,0.1)` + `backdrop-blur(12px)`, translucent border `rgba(255,255,255,0.2)`, hover lift (`translateY(-4px)`) + cyan glow shadow. Used on all cards, panels, form containers, CTA sections, dashboard frames, and contact detail blocks.
 - **Scroll fade-in** (`.fade-up` in index.css): `opacity: 0` + `translateY(24px)` → animates to visible on scroll. Toggles both directions (scroll up re-triggers).
 - **`src/hooks/useFadeIn.ts`** — Lightweight hook using native IntersectionObserver (5% threshold, -40px rootMargin, bidirectional). Returns a ref to attach to any element.
 - **CTASection** accepts optional `heading`, `subtext`, and `buttonLabel` props for page-specific content.
@@ -184,15 +184,20 @@ DashboardPage is a single-component page (no section components) with:
 
 ## Design System Rules
 
-- Industrial, premium, minimal design
+- Dark glassmorphism, industrial, premium, minimal design
 - Use generous spacing (py-14 mobile, py-20 tablet, py-24 desktop)
 - Container width: max-w-7xl mx-auto px-4 sm:px-6
 - Typography scale should be consistent
-- Primary color: Cyan-based CTA
-- Backgrounds: White (#FFFFFF) or light gray (#F5F7FA)
-- Use subtle hover transitions
-- No heavy shadows
+- Headings: `#FFFFFF`, Secondary text: `#D1D5DB`, Muted: `#9CA3AF`
+- Primary accent: Cyan `#00D1FF` for highlights, links, underlines
+- Button gradient: `#06B6D4` → `#3B82F6` (via CSS variables `--color-btn-gradient-from/to`)
+- Backgrounds: Deep slate `#0F172A` (primary) or dark gray `#111827` (alt sections)
+- Cards: Glassmorphism — `rgba(255,255,255,0.1)` bg + `backdrop-blur(12px)` + translucent border
+- Header: Semi-transparent dark + backdrop-blur (glass nav bar)
+- Use subtle hover transitions with cyan glow shadows
+- No heavy shadows (except shadow-2xl on glass cards)
 - No flashy animations — only subtle fade-in, hover lift, soft transitions
+- Avoid flat solid backgrounds without depth, light/white page backgrounds, fully opaque cards
 
 ## Tailwind Usage Rules
 

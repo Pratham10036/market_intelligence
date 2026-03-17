@@ -34,13 +34,13 @@ const DashboardPage: React.FC = () => {
 
         <div
           ref={gridRef}
-          className="fade-up grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10"
+          className="fade-up stagger-children grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10"
           style={{ transitionDelay: "0.15s" }}
         >
           {dashboards.map((d) => (
             <div
               key={d.src}
-              className="group overflow-hidden rounded-2xl border border-card-border bg-card-bg shadow-sm transition-shadow duration-300 ease-out hover:shadow-lg"
+              className="glass-card group overflow-hidden shadow-2xl transition-shadow duration-300 ease-out hover:shadow-[0_8px_32px_rgba(0,209,255,0.15)]"
             >
               <img
                 src={d.src}

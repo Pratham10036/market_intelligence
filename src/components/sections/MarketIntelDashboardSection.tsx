@@ -14,7 +14,7 @@ const MarketIntelDashboardSection: React.FC = () => {
             Visualizing Market Intelligence
           </h2>
 
-          <div className="mx-auto max-w-4xl overflow-hidden rounded-xl border border-card-border bg-background">
+          <div className="glass-card mx-auto max-w-4xl overflow-hidden">
             <div className="flex aspect-[16/9] items-center justify-center">
               <span className="text-sm text-text-muted">
                 Market Intelligence dashboard screenshot placeholder

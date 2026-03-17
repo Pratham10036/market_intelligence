@@ -11,7 +11,7 @@ const VisionSection: React.FC = () => {
           className="fade-up grid items-center gap-10 md:grid-cols-2"
         >
           {/* Image placeholder */}
-          <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-card-border/30">
+          <div className="flex aspect-[4/3] items-center justify-center rounded-xl border border-card-border bg-surface">
             <span className="text-sm text-text-muted">
               Industrial imagery placeholder
             </span>

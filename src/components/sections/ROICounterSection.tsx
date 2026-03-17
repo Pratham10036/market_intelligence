@@ -42,7 +42,7 @@ const ROICounterSection: React.FC = () => {
 
         <div
           ref={gridRef}
-          className="fade-up grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:grid-cols-4"
+          className="fade-up stagger-children grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:grid-cols-4"
           style={{ transitionDelay: "0.15s" }}
         >
           {stats.map((stat) => (

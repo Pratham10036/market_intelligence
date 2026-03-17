@@ -45,13 +45,13 @@ const BusinessImpactValueSection: React.FC = () => {
 
         <div
           ref={gridRef}
-          className="fade-up grid gap-6 sm:grid-cols-3"
+          className="fade-up stagger-children grid gap-6 sm:grid-cols-3"
           style={{ transitionDelay: "0.15s" }}
         >
           {blocks.map((b) => (
             <Card
               key={b.title}
-              className="glass-card border-card-border"
+              className="glass-card"
               styles={{ body: { background: "transparent" } }}
             >
               <div className="mb-4 text-3xl text-primary">{b.icon}</div>

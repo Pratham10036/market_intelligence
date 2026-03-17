@@ -70,13 +70,13 @@ const SolutionsOverviewSection: React.FC = () => {
 
         <div
           ref={gridRef}
-          className="fade-up grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="fade-up stagger-children grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           style={{ transitionDelay: "0.15s" }}
         >
           {modules.map((mod) => (
             <Card
               key={mod.title}
-              className="glass-card border-card-border"
+              className="glass-card"
               styles={{ body: { background: "transparent" } }}
             >
               <div className="mb-4 text-3xl text-primary">{mod.icon}</div>

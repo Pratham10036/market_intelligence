@@ -52,13 +52,13 @@ const ImplementationModelSection: React.FC = () => {
 
         <div
           ref={gridRef}
-          className="fade-up grid gap-6 sm:grid-cols-3"
+          className="fade-up stagger-children grid gap-6 sm:grid-cols-3"
           style={{ transitionDelay: "0.15s" }}
         >
           {steps.map((s) => (
             <Card
               key={s.title}
-              className="glass-card border-card-border text-center"
+              className="glass-card text-center"
               styles={{ body: { background: "transparent" } }}
             >
               <div className="mb-3 text-3xl text-primary">{s.icon}</div>

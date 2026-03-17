@@ -1,4 +1,4 @@
-# XChart Design System (Light Enterprise Theme)
+# XChart Design System (Dark Glassmorphism Theme)
 
 Derived from:
 XChart – The Bridge to Industry 4.0 Presentation
@@ -42,18 +42,18 @@ The website must communicate:
 
 ---
 
-# Color System (Light Theme)
+# Color System (Dark Glassmorphism Theme)
 
 ## Primary Background
 
 Main Background:
-#FFFFFF
+#0F172A
 
 Alternate Section Background:
-#F5F7FA
+#111827
 
 Subtle Divider Background:
-#EEF2F6
+#1E293B
 
 ---
 
@@ -73,14 +73,14 @@ Used for:
 
 ---
 
-## Secondary Accent (Enterprise Navy)
+## Secondary Accent (Deep Slate)
 
-Deep Navy:
-#0F2438
+Deep Slate:
+#0F172A
 
 Used for:
-• Strong headings  
-• Footer background  
+• Page backgrounds
+• Footer background
 • Dark contrast sections  
 
 ---
@@ -88,16 +88,16 @@ Used for:
 ## Neutral Text System
 
 Primary Heading Text:
-#111827
+#FFFFFF
 
 Secondary Text:
-#374151
+#D1D5DB
 
 Muted Text:
-#6B7280
+#9CA3AF
 
 Light Divider:
-#E5E7EB
+rgba(255, 255, 255, 0.2)
 
 ---
 
@@ -147,19 +147,22 @@ No compressed blocks.
 ## Primary Button
 
 Background:
-#00D1FF
+Gradient from #06B6D4 (cyan-500) to #3B82F6 (blue-500)
 
 Text:
-#0F2438
+#FFFFFF
 
 Hover:
-#00B8E6
+Shadow glow rgba(6, 182, 212, 0.3), scale(1.02)
+
+Active:
+scale(0.98)
 
 Border Radius:
-Subtle rounding (not playful)
+Rounded-lg (8px)
 
 Weight:
-Medium to Semi-bold
+Medium
 
 ---
 
@@ -169,40 +172,44 @@ Background:
 Transparent
 
 Border:
-1px solid #00D1FF
+1px solid rgba(255, 255, 255, 0.2)
 
 Text:
-#00D1FF
+#D1D5DB
 
 Hover:
-Background #00D1FF
-Text #0F2438
+Background rgba(255, 255, 255, 0.1)
+Text #FFFFFF
 
 ---
 
-# Card Design
+# Card Design (Glassmorphism)
 
 Card Background:
-#FFFFFF
+rgba(255, 255, 255, 0.1)
+
+Backdrop Filter:
+blur(12px)
 
 Border:
-1px solid #E5E7EB
+1px solid rgba(255, 255, 255, 0.2)
 
 Shadow:
-Very subtle soft shadow
+shadow-2xl (deep ambient shadow)
 
 Corner Radius:
-Moderate
+Rounded-2xl (16px)
 
 Used in:
-• Modules section  
-• ROI blocks  
-• Feature blocks  
+• Modules section
+• ROI blocks
+• Feature blocks
+• Login card
 
 Cards must feel:
-• Clean  
-• Structured  
-• Enterprise  
+• Translucent
+• Layered
+• Premium  
 
 ---
 
@@ -217,12 +224,10 @@ Dashboards represent:
 
 When displayed on website:
 
-• Use high-resolution screenshots  
-• White or very light background section  
-• Slight hover zoom  
-• Clean framing  
-
-No dark heavy panels on marketing pages.
+• Use high-resolution screenshots
+• Dark background section with glassmorphism frame
+• Slight hover zoom
+• Clean framing with subtle glow
 
 ---
 
@@ -236,26 +241,26 @@ High Throughput
 Rapid Deployment  
 
 Numbers should:
-• Be bold  
-• Use brand cyan (#00D1FF) for percentage  
-• Use strong heading color (#111827)  
+• Be bold
+• Use brand cyan (#06B6D4) for percentage
+• Use white heading color (#FFFFFF)  
 
 ---
 
 # Visual Philosophy
 
-Light
-Structured
+Dark
+Glassmorphic
 Confident
 Data-driven
-Minimal
+Premium
 
 Avoid:
-• Heavy gradients
-• Neon glow
-• Dark futuristic themes
+• Flat solid backgrounds without depth
 • Playful startup styling
 • Over-animation
+• Fully opaque cards (use translucency)
+• Light/white page backgrounds
 
 ---
 
@@ -351,9 +356,8 @@ Primary CTA Button must be:
 
 Styled using:
 
-backgroundColor: #00D1FF
-borderColor: #00D1FF
-color: #0F2438
+background: linear-gradient(to right, #06B6D4, #3B82F6)
+color: #FFFFFF
 
 Do NOT use raw <button> for primary CTA.
 

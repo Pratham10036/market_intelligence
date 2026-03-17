@@ -19,7 +19,7 @@ const CTASection: React.FC<CTASectionProps> = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div
           ref={ref}
-          className="fade-up mx-auto max-w-3xl rounded-2xl bg-background-alt px-6 py-12 text-center sm:px-8 sm:py-16 md:px-16"
+          className="fade-up glass-card-elevated mx-auto max-w-3xl px-6 py-12 text-center sm:px-8 sm:py-16 md:px-16"
         >
           <h2 className="mb-3 text-2xl font-bold text-heading sm:mb-4 sm:text-3xl md:text-4xl">
             {heading}

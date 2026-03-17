@@ -60,14 +60,13 @@ const ModulesSection: React.FC = () => {
 
         <div
           ref={gridRef}
-          className="fade-up grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3"
+          className="fade-up stagger-children grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3"
           style={{ transitionDelay: "0.15s" }}
         >
           {modules.map((mod) => (
             <Card
               key={mod.title}
-              hoverable
-              className="glass-card border-card-border"
+              className="glass-card"
               styles={{ body: { background: "transparent" } }}
             >
               <div className="mb-3 text-2xl text-primary sm:mb-4 sm:text-3xl">

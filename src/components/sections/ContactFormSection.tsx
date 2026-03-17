@@ -20,7 +20,7 @@ const ContactFormSection: React.FC = () => {
           className="fade-up grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16"
         >
           {/* Contact Form */}
-          <div className="rounded-2xl border border-card-border bg-card-bg p-6 sm:p-8 md:p-10">
+          <div className="glass-card-elevated p-6 sm:p-8 md:p-10">
             <h2 className="mb-2 text-2xl font-bold text-heading sm:text-3xl">
               Send Us a Message
             </h2>
@@ -95,8 +95,8 @@ const ContactFormSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-6">
-              <div className="rounded-xl border border-card-border bg-card-bg p-5 sm:p-6">
+            <div className="stagger-children flex flex-col gap-6">
+              <div className="glass-card p-5 sm:p-6">
                 <h3 className="mb-1 text-sm font-semibold tracking-widest uppercase text-primary">
                   Email
                 </h3>
@@ -108,7 +108,7 @@ const ContactFormSection: React.FC = () => {
                 </a>
               </div>
 
-              <div className="rounded-xl border border-card-border bg-card-bg p-5 sm:p-6">
+              <div className="glass-card p-5 sm:p-6">
                 <h3 className="mb-1 text-sm font-semibold tracking-widest uppercase text-primary">
                   Office
                 </h3>
@@ -120,7 +120,7 @@ const ContactFormSection: React.FC = () => {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-card-border bg-card-bg p-5 sm:p-6">
+              <div className="glass-card p-5 sm:p-6">
                 <h3 className="mb-1 text-sm font-semibold tracking-widest uppercase text-primary">
                   Response Time
                 </h3>

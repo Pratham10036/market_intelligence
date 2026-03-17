@@ -17,7 +17,7 @@ const ContactMapSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-card-border">
+          <div className="glass-card overflow-hidden">
             <div className="h-64 sm:h-80 md:h-96">
               <iframe
                 title="XChart Office Location"
