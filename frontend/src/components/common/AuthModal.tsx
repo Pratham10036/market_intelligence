@@ -17,7 +17,7 @@ type AuthModalProps = {
   title?: string;
   subtitle?: string;
   submitText?: string;
-  mode: "login" | "signup";
+  mode: "login" | "signup" | "verify";
 };
 
 export default function AuthModal({
@@ -104,29 +104,31 @@ export default function AuthModal({
               </Button>
             </Form.Item>
 
-            <p className="text-center text-sm text-text-muted">
-              {isLogin ? (
-                <>
-                  Don&apos;t have an account?{" "}
-                  <Link
-                    to="/signup"
-                    className="cursor-pointer font-medium text-primary hover:text-primary-hover"
-                  >
-                    Sign up
-                  </Link>
-                </>
-              ) : (
-                <>
-                  Already have an account?{" "}
-                  <Link
-                    to="/login"
-                    className="cursor-pointer font-medium text-primary hover:text-primary-hover"
-                  >
-                    Login
-                  </Link>
-                </>
-              )}
-            </p>
+            {mode !== "verify" && (
+              <p className="text-center text-sm text-text-muted">
+                {isLogin ? (
+                  <>
+                    Don&apos;t have an account?{" "}
+                    <Link
+                      to="/signup"
+                      className="cursor-pointer font-medium text-primary hover:text-primary-hover"
+                    >
+                      Sign up
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    Already have an account?{" "}
+                    <Link
+                      to="/login"
+                      className="cursor-pointer font-medium text-primary hover:text-primary-hover"
+                    >
+                      Login
+                    </Link>
+                  </>
+                )}
+              </p>
+            )}
           </Form>
         </div>
       </div>

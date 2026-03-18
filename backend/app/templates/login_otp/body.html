@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login OTP</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      padding: 40px 20px;
+      color: #2d2d2d;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+    .intro {
+      font-size: 15px;
+      margin: 0 0 30px 0;
+    }
+    .otp-box {
+      display: block;
+      width: 200px;
+      margin: 25px auto;
+      padding: 18px 20px;
+      background-color: #f3f4f6;
+      border: 2px dashed #2563eb;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 8px;
+      color: #2563eb;
+      border-radius: 10px;
+    }
+    .disclaimer {
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+      margin-top: 30px;
+    }
+    .footer {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login Verification</h2>
+
+    <p class="intro">
+      Dear {{ user_name }},
+      <br><br>
+      Use the following one-time password to complete your login.
+      <br>This OTP is valid for <strong>2 minutes</strong>.
+    </p>
+
+    <div class="otp-box">{{ otp }}</div>
+
+    <p class="disclaimer">
+      If you did not attempt to log in, please secure your account immediately.
+    </p>
+
+    <div class="footer">
+      &copy; 2025 XChart. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

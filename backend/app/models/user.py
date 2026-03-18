@@ -2,7 +2,7 @@ import uuid
 
 from sqlalchemy import Boolean, DateTime, String, func
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
 
@@ -19,6 +19,8 @@ class User(Base):
     )
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    email_verified: Mapped[bool] = mapped_column(Boolean, default=False)
+    last_login_at = mapped_column(DateTime(timezone=True), nullable=True)
     created_at = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
@@ -28,3 +30,5 @@ class User(Base):
         onupdate=func.now(),
         nullable=False,
     )
+
+    otp_verifications = relationship("UserOtpVerification", back_populates="user")

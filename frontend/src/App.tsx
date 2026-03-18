@@ -13,6 +13,7 @@ const BusinessImpactPage = lazy(() => import("./pages/BusinessImpactPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
 const LoginPage = lazy(() => import("./pages/auth/LoginPage"));
+const VerifyEmail = lazy(() => import("./pages/auth/VerifyEmail"));
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
