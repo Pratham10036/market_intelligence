@@ -1,36 +1,26 @@
-import { useState } from "react";
 import { useNavigate } from "react-router";
+import { message } from "antd";
 import AuthModal from "../../components/common/AuthModal";
 import { authApi } from "../../api/auth";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
-
   const handleSubmit = async (values: { email: string; password: string }) => {
-    setLoading(true);
+    const response = await authApi.sendLoginOtp({
+      email: values.email,
+      password: values.password,
+    });
 
-    try {
-      const response = await authApi.sendLoginOtp({
-        email: values.email,
-        password: values.password,
-      });
-
-      if (!response.isSuccess) {
-        // ❗ handle error properly
-        console.error(response.error);
-        setLoading(false);
-        return;
-      }
-
-      // ✅ success
-      navigate("/verify-email");
-    } catch (error) {
-      console.error("Unexpected error:", error);
-    } finally {
-      setLoading(false);
+    if (!response.isSuccess) {
+      message.error(response.error || "Login failed");
+      return;
     }
+
+    // Store password temporarily so VerifyEmail can resend login OTP if needed
+    sessionStorage.setItem("login_password", values.password);
+
+    navigate(`/verify-email?email=${encodeURIComponent(values.email)}&flow=login`);
   };
 
   return (

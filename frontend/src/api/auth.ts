@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 type ApiResponse<T = Record<string, unknown>> = {
   isSuccess: boolean;
@@ -22,17 +22,22 @@ async function request<T>(
 }
 
 export const authApi = {
-  signup: (body: { name: string; email: string; password: string }) =>
+  userSignup: (body: { name: string; email: string; password: string }) =>
     request("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(body),
     }),
 
   sendEmailVerificationOtp: (body: { email: string }) =>
-    request<{ email: string; otp_sent: boolean; expires_in_minutes: number; retry_after_seconds?: number }>(
-      "/api/auth/email-verification/send",
-      { method: "POST", body: JSON.stringify(body) },
-    ),
+    request<{
+      email: string;
+      otp_sent: boolean;
+      expires_in_minutes: number;
+      retry_after_seconds?: number;
+    }>("/api/auth/email-verification/send", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
 
   verifyEmailOtp: (body: { email: string; otp: string }) =>
     request<{ email: string; email_verified: boolean }>(
@@ -47,10 +52,10 @@ export const authApi = {
     }),
 
   verifyLoginOtp: (body: { email: string; otp: string }) =>
-    request("/api/auth/login/verify-otp", {
-      method: "POST",
-      body: JSON.stringify(body),
-    }),
+    request<{ access_token: string; token_type: string }>(
+      "/api/auth/login/verify-otp",
+      { method: "POST", body: JSON.stringify(body) },
+    ),
 
   login: (body: { email: string; password: string }) =>
     request("/api/auth/login", {
@@ -61,6 +66,11 @@ export const authApi = {
   logout: (accessToken: string) =>
     request("/api/auth/logout", {
       method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }),
+
+  getCurrentUser: (accessToken: string) =>
+    request<{ id: string; email: string; name: string }>("/api/users/me", {
       headers: { Authorization: `Bearer ${accessToken}` },
     }),
 };
