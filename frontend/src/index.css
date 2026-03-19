@@ -419,3 +419,193 @@ body {
 .ant-divider {
   border-color: var(--color-card-border) !important;
 }
+
+/* ============================================
+   USER MENU — PROFILE DROPDOWN
+   ============================================ */
+
+.user-menu {
+  position: relative;
+}
+
+.user-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-card-border);
+  background: var(--color-card-bg);
+  cursor: pointer;
+  transition:
+    border-color var(--motion-duration-fast) var(--motion-ease-premium),
+    background-color var(--motion-duration-fast) var(--motion-ease-premium),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-premium);
+}
+
+.user-menu-trigger:hover {
+  border-color: var(--color-card-border-hover);
+  background: var(--color-card-bg-elevated);
+  box-shadow: 0 0 12px var(--color-glow);
+}
+
+.user-menu-trigger:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-background),
+    0 0 0 4px var(--color-btn-gradient-from);
+}
+
+.user-menu-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-btn-gradient-from), var(--color-btn-gradient-to));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.user-menu-avatar-lg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-btn-gradient-from), var(--color-btn-gradient-to));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.user-menu-name {
+  color: var(--color-heading);
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu-chevron {
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+/* Dropdown panel */
+.user-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-card-border);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 24px var(--color-glow);
+  z-index: 100;
+  animation: userMenuFadeIn var(--motion-duration-fast) var(--motion-ease-premium);
+}
+
+@keyframes userMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* User info header inside dropdown */
+.user-menu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px 8px;
+}
+
+.user-menu-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.user-menu-info-name {
+  color: var(--color-heading);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-menu-info-email {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-menu-divider {
+  height: 1px;
+  margin: 4px 8px;
+  background: var(--color-card-border);
+}
+
+/* Menu items */
+.user-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    color var(--motion-duration-fast) var(--motion-ease-premium),
+    background-color var(--motion-duration-fast) var(--motion-ease-premium);
+}
+
+.user-menu-item:hover {
+  color: var(--color-heading);
+  background: var(--color-card-bg);
+}
+
+.user-menu-item:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-background),
+    0 0 0 3px var(--color-btn-gradient-from);
+}
+
+.user-menu-item-icon {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+/* Danger item (Logout) */
+.user-menu-item-danger:hover {
+  color: #ff4d4f;
+  background: rgba(255, 77, 79, 0.08);
+}

@@ -3,6 +3,8 @@ import { Layout, Menu, Button, Drawer } from "antd";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router";
 import type { MenuProps } from "antd";
+import { useAuth } from "../../context/AuthContext";
+import UserMenu from "../common/UserMenu";
 
 const menuItems: MenuProps["items"] = [
   { key: "/", label: "Home" },
@@ -18,6 +20,7 @@ const Header: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
 
   const handleMenuClick: MenuProps["onClick"] = ({ key }) => {
     navigate(key);
@@ -72,14 +75,18 @@ const Header: React.FC = () => {
           </ul>
         </nav>
 
-        {/* Desktop CTA — right (hidden below lg) */}
+        {/* Desktop CTA / User Menu — right (hidden below lg) */}
         <div className="hidden lg:block">
-          <Button
-            type="primary"
-            onClick={() => navigate("/contact")}
-          >
-            Request Demo
-          </Button>
+          {isAuthenticated ? (
+            <UserMenu />
+          ) : (
+            <Button
+              type="primary"
+              onClick={() => navigate("/contact")}
+            >
+              Request Demo
+            </Button>
+          )}
         </div>
 
         {/* Mobile menu toggle (visible below lg) */}
@@ -123,17 +130,21 @@ const Header: React.FC = () => {
           style={{ background: "transparent" }}
         />
         <div className="border-t border-card-border p-4">
-          <Button
-            type="primary"
-            block
-            size="large"
-            onClick={() => {
-              navigate("/contact");
-              setDrawerOpen(false);
-            }}
-          >
-            Request Demo
-          </Button>
+          {isAuthenticated ? (
+            <UserMenu />
+          ) : (
+            <Button
+              type="primary"
+              block
+              size="large"
+              onClick={() => {
+                navigate("/contact");
+                setDrawerOpen(false);
+              }}
+            >
+              Request Demo
+            </Button>
+          )}
         </div>
       </Drawer>
     </Layout.Header>

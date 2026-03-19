@@ -28,14 +28,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // On mount: if a token exists in storage, treat user as authenticated immediately.
-  // No getCurrentUser call — token presence is the auth signal.
+  // On mount: if a token exists, fetch current user from /me.
+  // If the token is expired or invalid, clear auth state gracefully.
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (token) {
-      setIsAuthenticated(true);
+    if (!token) {
+      setIsLoading(false);
+      return;
     }
-    setIsLoading(false);
+
+    setIsAuthenticated(true);
+
+    authApi.getCurrentUser(token).then((res) => {
+      if (res.isSuccess && res.data?.id) {
+        setUser(res.data);
+      } else {
+        // Token expired or invalid — clear auth state
+        localStorage.removeItem("access_token");
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+      setIsLoading(false);
+    });
   }, []);
 
   const login = (accessToken: string) => {
