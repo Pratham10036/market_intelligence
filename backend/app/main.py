@@ -1,6 +1,7 @@
 import logging
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -39,12 +40,34 @@ app.include_router(auth_router)
 app.include_router(user_router)
 
 
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    errors = exc.errors()
+    # Build a readable message from the first validation error
+    first = errors[0] if errors else {}
+    field = " -> ".join(str(loc) for loc in first.get("loc", [])[1:])  # skip "body"
+    msg = first.get("msg", "Validation error")
+    error_message = f"{field}: {msg}" if field else msg
+    return JSONResponse(
+        status_code=422,
+        content={"isSuccess": False, "data": None, "error": error_message},
+    )
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"isSuccess": False, "data": None, "error": exc.detail},
+    )
+
+
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     logger.error("Unhandled exception: %s", exc, exc_info=True)
     return JSONResponse(
         status_code=500,
-        content={"detail": "Internal server error"},
+        content={"isSuccess": False, "data": None, "error": "Internal server error"},
     )
 
 

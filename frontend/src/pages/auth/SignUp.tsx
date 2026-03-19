@@ -1,19 +1,33 @@
-import { useState } from "react";
 import { useNavigate } from "react-router";
+import { message } from "antd";
 import AuthModal from "../../components/common/AuthModal";
+import { authApi } from "../../api/auth";
 
-const LoginPage: React.FC = () => {
+const SignupPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
+  const handleSubmit = async (values: {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }) => {
+    const res = await authApi.userSignup({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
 
-  const handleSubmit = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/");
-    }, 1000);
-    console.log(loading);
+    if (!res.isSuccess) {
+      message.error(res.error || "Signup failed");
+      return;
+    }
+
+    // Trigger email verification OTP; navigate regardless (user can resend from verify page)
+    await authApi.sendEmailVerificationOtp({ email: values.email });
+
+    navigate(`login`);
+    // navigate(`/verify-email?email=${encodeURIComponent(values.email)}&flow=signup`);
   };
 
   return (
@@ -53,7 +67,22 @@ const LoginPage: React.FC = () => {
             label: "Confirm Password",
             type: "password",
             placeholder: "Confirm Password",
-            rules: [{ required: true, message: "Confirm Password required" }],
+            rules: [
+              { required: true, message: "Confirm Password required" },
+              ({ getFieldValue }: any) => ({
+                validator(_: any, value: string) {
+                  return new Promise<void>((resolve, reject) => {
+                    setTimeout(() => {
+                      if (!value || getFieldValue("password") === value) {
+                        resolve();
+                      } else {
+                        reject(new Error("Passwords do not match"));
+                      }
+                    }, 500);
+                  });
+                },
+              }),
+            ],
           },
         ]}
       />
@@ -61,4 +90,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

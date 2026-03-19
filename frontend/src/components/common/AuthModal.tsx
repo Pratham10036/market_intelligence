@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button } from "antd";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { useState } from "react";
 import { Link } from "react-router";
@@ -17,7 +17,9 @@ type AuthModalProps = {
   title?: string;
   subtitle?: string;
   submitText?: string;
-  mode: "login" | "signup";
+  mode: "login" | "signup" | "verify";
+  onResend?: () => void;
+  cooldown?: number | null;
 };
 
 export default function AuthModal({
@@ -27,6 +29,8 @@ export default function AuthModal({
   subtitle = "Enter your credentials",
   submitText = "Submit",
   mode,
+  onResend,
+  cooldown,
 }: AuthModalProps) {
   const ref = useFadeIn<HTMLDivElement>();
   const [loading, setLoading] = useState(false);
@@ -63,6 +67,9 @@ export default function AuthModal({
                 label={field.label}
                 name={field.name}
                 rules={field.rules}
+                dependencies={
+                  field.name === "confirmPassword" ? ["password"] : []
+                }
               >
                 {field.type === "password" ? (
                   <Input.Password
@@ -81,10 +88,10 @@ export default function AuthModal({
 
             {isLogin && (
               <Form.Item className="mb-4">
-                <div className="flex items-center justify-between">
-                  <Form.Item name="remember" valuePropName="checked" noStyle>
+                <div className="flex items-center justify-end space-x-2 pr-4">
+                  {/* <Form.Item name="remember" valuePropName="checked" noStyle>
                     <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
+                  </Form.Item> */}
                   <span className="cursor-pointer text-sm text-primary hover:text-primary-hover">
                     Forgot password?
                   </span>
@@ -104,29 +111,47 @@ export default function AuthModal({
               </Button>
             </Form.Item>
 
-            <p className="text-center text-sm text-text-muted">
-              {isLogin ? (
-                <>
-                  Don&apos;t have an account?{" "}
-                  <Link
-                    to="/signup"
-                    className="cursor-pointer font-medium text-primary hover:text-primary-hover"
-                  >
-                    Sign up
-                  </Link>
-                </>
-              ) : (
-                <>
-                  Already have an account?{" "}
-                  <Link
-                    to="/login"
-                    className="cursor-pointer font-medium text-primary hover:text-primary-hover"
-                  >
-                    Login
-                  </Link>
-                </>
-              )}
-            </p>
+            {mode !== "verify" && (
+              <p className="text-center text-sm text-text-muted">
+                {isLogin ? (
+                  <>
+                    Don&apos;t have an account?{" "}
+                    <Link
+                      to="/signup"
+                      className="cursor-pointer font-medium text-primary hover:text-primary-hover"
+                    >
+                      Sign up
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    Already have an account?{" "}
+                    <Link
+                      to="/login"
+                      className="cursor-pointer font-medium text-primary hover:text-primary-hover"
+                    >
+                      Login
+                    </Link>
+                  </>
+                )}
+              </p>
+            )}
+
+            {mode === "verify" && (
+              <p className="text-center text-sm text-text-muted">
+                Didn&apos;t receive the code?{" "}
+                <span
+                  onClick={!cooldown ? onResend : undefined}
+                  className={`font-medium ${
+                    cooldown
+                      ? "opacity-50 cursor-not-allowed"
+                      : "cursor-pointer text-primary hover:text-primary-hover"
+                  }`}
+                >
+                  {cooldown ? `Resend in ${cooldown}s` : "Resend"}
+                </span>
+              </p>
+            )}
           </Form>
         </div>
       </div>
