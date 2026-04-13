@@ -1,0 +1,277 @@
+{
+  "meta": {
+    "generated_at": "2026-04-13T13:30:27+00:00",
+    "files_processed": 13,
+    "row_count": 495051,
+    "date_range": {
+      "min": "2022-01-02",
+      "max": "2026-02-28"
+    },
+    "is_sample": true
+  },
+  "kpi": {
+    "total_value_usd": 98892514848.9,
+    "total_quantity": 91332719929.53,
+    "row_count": 495051,
+    "unique_countries": 140,
+    "unique_products": 283,
+    "top_country": "China",
+    "top_product": "8541"
+  },
+  "monthly": [
+    {
+      "month": "2022-01",
+      "value": 620285178.84,
+      "quantity": 68730535.6,
+      "count": 1284
+    },
+    {
+      "month": "2022-02",
+      "value": 1009155253.89,
+      "quantity": 52254981.0,
+      "count": 1676
+    },
+    {
+      "month": "2022-03",
+      "value": 1726687705.57,
+      "quantity": 265406980.01,
+      "count": 3253
+    },
+    {
+      "month": "2022-04",
+      "value": 75523902.67,
+      "quantity": 39041587.0,
+      "count": 224
+    },
+    {
+      "month": "2022-05",
+      "value": 71327175.98,
+      "quantity": 116217298.4,
+      "count": 450
+    },
+    {
+      "month": "2022-06",
+      "value": 184877913.46,
+      "quantity": 152856512.0,
+      "count": 690
+    },
+    {
+      "month": "2022-07",
+      "value": 176780074.66,
+      "quantity": 143746518.02,
+      "count": 880
+    },
+    {
+      "month": "2022-08",
+      "value": 425543955.29,
+      "quantity": 217572498.0,
+      "count": 1252
+    },
+    {
+      "month": "2022-09",
+      "value": 516507517.16,
+      "quantity": 350778935.5,
+      "count": 2040
+    },
+    {
+      "month": "2022-10",
+      "value": 453008311.48,
+      "quantity": 290902838.3,
+      "count": 1866
+    },
+    {
+      "month": "2022-11",
+      "value": 515751010.92,
+      "quantity": 318657304.81,
+      "count": 2041
+    },
+    {
+      "month": "2022-12",
+      "value": 595697021.04,
+      "quantity": 419406805.0,
+      "count": 2628
+    }
+  ],
+  "country": [
+    {
+      "name": "China",
+      "value": 63368312050.56,
+      "quantity": 74810477203.46,
+      "count": 236202
+    },
+    {
+      "name": "Vietnam",
+      "value": 14580073920.85,
+      "quantity": 5613566989.91,
+      "count": 57259
+    },
+    {
+      "name": "Malaysia",
+      "value": 4949795191.54,
+      "quantity": 2581502062.61,
+      "count": 22513
+    },
+    {
+      "name": "United States",
+      "value": 3721358977.68,
+      "quantity": 89814471.46,
+      "count": 34264
+    },
+    {
+      "name": "Indonesia",
+      "value": 3196688078.97,
+      "quantity": 1256464837.96,
+      "count": 26365
+    }
+  ],
+  "category": [
+    {
+      "name": "HS Trade Records",
+      "value": 89227313832.44,
+      "quantity": 88997872207.21,
+      "count": 307731
+    },
+    {
+      "name": "Solar Module",
+      "value": 8179648837.97,
+      "quantity": 1749517913.0,
+      "count": 158431
+    },
+    {
+      "name": "Aluminium Frame",
+      "value": 1413101898.85,
+      "quantity": 465587503.84,
+      "count": 28012
+    },
+    {
+      "name": "Solar Glass",
+      "value": 72450279.64,
+      "quantity": 119742305.48,
+      "count": 877
+    }
+  ],
+  "product": [
+    {
+      "name": "8541",
+      "value": 96871370578.0,
+      "quantity": 89137635630.05,
+      "count": 376617
+    },
+    {
+      "name": "7610",
+      "value": 832636489.19,
+      "quantity": 268270472.41,
+      "count": 15781
+    },
+    {
+      "name": "7616",
+      "value": 647627820.31,
+      "quantity": 208517685.16,
+      "count": 4410
+    },
+    {
+      "name": "7007",
+      "value": 181832886.01,
+      "quantity": 616772336.95,
+      "count": 2222
+    },
+    {
+      "name": "8535",
+      "value": 83236664.32,
+      "quantity": 41002009.0,
+      "count": 586
+    }
+  ],
+  "table": [
+    {
+      "date": "2024-01-01",
+      "product": "7610",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 23093.08,
+      "quantity": 18000.0,
+      "description": "ALUMINUIM SOLAR FRAME FOR USE IN THE MANUFACTURING . OF PV MODULE 6063-T5-1134MM7000KGS AS PER INVOICE"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "8302",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 2909.23,
+      "quantity": 860.0,
+      "description": "20MM ALUMINIUM FRAME HINGES ZINC FINISH FULL QTY 4300 PAIRS"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "7610",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 81044.31,
+      "quantity": 8600.0,
+      "description": "ALUMINIUM SOLAR FRAME SET 6005-T6 2278X1134X35-20MM FOR MFG. ING OF SOLAR PHOTOVOLTAIC MODULE"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "7610",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 111099.68,
+      "quantity": 38400.0,
+      "description": "ALUMINUM FRAME EXTRUSION SIZE:35*33 FRAME SIZE:2278MM ALUMINUM ALLOY:6063-T5 WEIGHT:0.412KG/M SURFACE TREATMENT:15UM COL"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "7610",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 47834.25,
+      "quantity": 38400.0,
+      "description": "ALUMINUM FRAME EXTRUSION SIZE:35*18 FRAME SIZE:1134MM ALUMINUM ALLOY:6063-T5 WEIGHT:0.327KG/M SURFACE TREATMENT: 15UM CO"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "7610",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 68186.91,
+      "quantity": 23216.0,
+      "description": "ALUMINUM PROFILE OR FRAME-RAY-001 LENGTH 4.62M USE FOR MANUFACTURING OF SOLAR PV MODULE 13800PCS"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "8302",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 692.03,
+      "quantity": 200.0,
+      "description": "20MM ALUMINIUM FRAME HINGES BLACK FINISH INSET QTY 1000 PAIRS"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "8302",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 542.56,
+      "quantity": 154.0,
+      "description": "3D-19MM ALUMINIUM FRAME HINGES BLACK FINISH FULL QTY 700 PAIRS"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "7610",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 54186.92,
+      "quantity": 18000.0,
+      "description": "ALUMINUIM SOLAR FRAME FOR USE IN THE MANUFACTURING . OF PV MODULE 6063-T5-2278MM16500KGS AS PER INVOICE"
+    },
+    {
+      "date": "2024-01-01",
+      "product": "7610",
+      "category": "Aluminium Frame",
+      "country": "China",
+      "value": 78953.12,
+      "quantity": 24100.0,
+      "description": "ALUMINIUM SOLAR FRAME, SIZE 2278MM 35MMX35MM-1.5MM, 1134MM35MM X11MM X-1.5MM 9500SETS"
+    }
+  ]
+}

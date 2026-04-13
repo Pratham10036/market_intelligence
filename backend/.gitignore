@@ -1,0 +1,27 @@
+# Secrets + local overrides
+.env
+
+# Local pipeline artifacts — generated, not source
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenvs
+venv/
+.venv/
+env/
+
+# IDEs
+.vscode/
+.idea/

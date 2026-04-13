@@ -71,7 +71,13 @@ const Header: React.FC = () => {
         </nav>
 
         {/* Desktop CTA — right (hidden below lg) */}
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-2 lg:flex">
+          <Button
+            type="default"
+            onClick={() => navigate("/market-intelligence/dashboard")}
+          >
+            Sign In
+          </Button>
           <Button
             type="primary"
             onClick={() => navigate("/contact")}
@@ -118,7 +124,18 @@ const Header: React.FC = () => {
           className="drawer-nav flex-1 border-r-0"
           style={{ background: "transparent" }}
         />
-        <div className="border-t border-card-border p-4">
+        <div className="flex flex-col gap-2 border-t border-card-border p-4">
+          <Button
+            type="default"
+            block
+            size="large"
+            onClick={() => {
+              navigate("/market-intelligence/dashboard");
+              setDrawerOpen(false);
+            }}
+          >
+            Sign In
+          </Button>
           <Button
             type="primary"
             block

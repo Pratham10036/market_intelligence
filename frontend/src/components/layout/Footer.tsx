@@ -6,6 +6,7 @@ const navLinks = [
   { path: "/about", label: "About" },
   { path: "/solutions", label: "Solutions" },
   { path: "/market-intelligence", label: "Market Intelligence" },
+  { path: "/market-intelligence/dashboard", label: "Live Dashboard" },
   { path: "/dashboard", label: "Dashboard" },
   { path: "/business-impact", label: "Business Impact" },
   { path: "/contact", label: "Contact" },
